@@ -10,13 +10,19 @@ namespace Entidades
     {
 
         #region Atributos
+        private int id;
         private string nombre;
-        public string apellido;
-        public long telefono;
-        public long DNI;
+        private string apellido;
+        private long telefono;
+        private long DNI;
         #endregion
 
         #region Propiedades
+        public int idProp
+        {
+            get { return id; }
+            set { id = value; }
+        }
         public string nombreProp
         {
             get { return nombre; }

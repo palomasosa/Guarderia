@@ -10,14 +10,21 @@ namespace Entidades
     {
 
         #region Atributos
+        private int id;
         private string nombre;
-        public string tipo;
-        public string observacion;
-        public DateTime fechaNacimiento;
-        public bool retirado;
+        private string tipo;
+        private string observacion;
+        private DateTime fechaNacimiento;
+        private bool retirado;
+        private int duenioId;
         #endregion
 
         #region Propiedades
+        public int idProp
+        {
+            get { return id; }
+            set { id = value; }
+        }
         public string nombreProp
         {
             get { return nombre; }
@@ -42,6 +49,11 @@ namespace Entidades
         {
             get { return retirado; }
             set { retirado = value; }
+        }
+        public int duenioIdProp
+        {
+            get { return duenioId; }
+            set { duenioId = value; }
         }
         #endregion
 

@@ -30,6 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabDuenio = new System.Windows.Forms.TabPage();
+            this.btnModificarDuenio = new System.Windows.Forms.Button();
+            this.lblMensaje = new System.Windows.Forms.Label();
             this.btnCargarDuenio = new System.Windows.Forms.Button();
             this.txtDniDuenio = new System.Windows.Forms.TextBox();
             this.txtTelDuenio = new System.Windows.Forms.TextBox();
@@ -40,6 +42,9 @@
             this.lblApellidoDuenio = new System.Windows.Forms.Label();
             this.lblNombreDuenio = new System.Windows.Forms.Label();
             this.tabMascota = new System.Windows.Forms.TabPage();
+            this.btnModificarMascota = new System.Windows.Forms.Button();
+            this.cbDueniosMascota = new System.Windows.Forms.ComboBox();
+            this.lblDuenioMascota = new System.Windows.Forms.Label();
             this.cbRetirado = new System.Windows.Forms.CheckBox();
             this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
@@ -50,13 +55,13 @@
             this.lblObsMascota = new System.Windows.Forms.Label();
             this.lblTipoMascota = new System.Windows.Forms.Label();
             this.lblNombreMascota = new System.Windows.Forms.Label();
-            this.dgvGuarderia = new System.Windows.Forms.DataGridView();
-            this.lblDuenioMascota = new System.Windows.Forms.Label();
-            this.cbDueniosMascota = new System.Windows.Forms.ComboBox();
+            this.dgvDuenios = new System.Windows.Forms.DataGridView();
+            this.dgvMascotas = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabDuenio.SuspendLayout();
             this.tabMascota.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvGuarderia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDuenios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMascotas)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -72,6 +77,8 @@
             // 
             // tabDuenio
             // 
+            this.tabDuenio.Controls.Add(this.btnModificarDuenio);
+            this.tabDuenio.Controls.Add(this.lblMensaje);
             this.tabDuenio.Controls.Add(this.btnCargarDuenio);
             this.tabDuenio.Controls.Add(this.txtDniDuenio);
             this.tabDuenio.Controls.Add(this.txtTelDuenio);
@@ -91,6 +98,25 @@
             this.tabDuenio.Text = "Dueño";
             this.tabDuenio.UseVisualStyleBackColor = true;
             // 
+            // btnModificarDuenio
+            // 
+            this.btnModificarDuenio.Location = new System.Drawing.Point(419, 200);
+            this.btnModificarDuenio.Name = "btnModificarDuenio";
+            this.btnModificarDuenio.Size = new System.Drawing.Size(84, 26);
+            this.btnModificarDuenio.TabIndex = 24;
+            this.btnModificarDuenio.Text = "Modificar";
+            this.btnModificarDuenio.UseVisualStyleBackColor = true;
+            this.btnModificarDuenio.Visible = false;
+            this.btnModificarDuenio.Click += new System.EventHandler(this.btnModificarDuenio_Click);
+            // 
+            // lblMensaje
+            // 
+            this.lblMensaje.AutoSize = true;
+            this.lblMensaje.Location = new System.Drawing.Point(339, 101);
+            this.lblMensaje.Name = "lblMensaje";
+            this.lblMensaje.Size = new System.Drawing.Size(0, 18);
+            this.lblMensaje.TabIndex = 9;
+            // 
             // btnCargarDuenio
             // 
             this.btnCargarDuenio.Location = new System.Drawing.Point(419, 200);
@@ -99,6 +125,7 @@
             this.btnCargarDuenio.TabIndex = 8;
             this.btnCargarDuenio.Text = "Cargar";
             this.btnCargarDuenio.UseVisualStyleBackColor = true;
+            this.btnCargarDuenio.Click += new System.EventHandler(this.btnCargarDuenio_Click);
             // 
             // txtDniDuenio
             // 
@@ -174,6 +201,7 @@
             // 
             // tabMascota
             // 
+            this.tabMascota.Controls.Add(this.btnModificarMascota);
             this.tabMascota.Controls.Add(this.cbDueniosMascota);
             this.tabMascota.Controls.Add(this.lblDuenioMascota);
             this.tabMascota.Controls.Add(this.cbRetirado);
@@ -194,6 +222,36 @@
             this.tabMascota.TabIndex = 1;
             this.tabMascota.Text = "Mascota";
             this.tabMascota.UseVisualStyleBackColor = true;
+            // 
+            // btnModificarMascota
+            // 
+            this.btnModificarMascota.Location = new System.Drawing.Point(419, 200);
+            this.btnModificarMascota.Name = "btnModificarMascota";
+            this.btnModificarMascota.Size = new System.Drawing.Size(84, 26);
+            this.btnModificarMascota.TabIndex = 25;
+            this.btnModificarMascota.Text = "Modificar";
+            this.btnModificarMascota.UseVisualStyleBackColor = true;
+            this.btnModificarMascota.Visible = false;
+            this.btnModificarMascota.Click += new System.EventHandler(this.btnModificarMascota_Click);
+            // 
+            // cbDueniosMascota
+            // 
+            this.cbDueniosMascota.FormattingEnabled = true;
+            this.cbDueniosMascota.Location = new System.Drawing.Point(107, 113);
+            this.cbDueniosMascota.Name = "cbDueniosMascota";
+            this.cbDueniosMascota.Size = new System.Drawing.Size(132, 26);
+            this.cbDueniosMascota.TabIndex = 23;
+            this.cbDueniosMascota.Text = "Dueños";
+            // 
+            // lblDuenioMascota
+            // 
+            this.lblDuenioMascota.AutoSize = true;
+            this.lblDuenioMascota.Location = new System.Drawing.Point(8, 116);
+            this.lblDuenioMascota.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDuenioMascota.Name = "lblDuenioMascota";
+            this.lblDuenioMascota.Size = new System.Drawing.Size(49, 18);
+            this.lblDuenioMascota.TabIndex = 22;
+            this.lblDuenioMascota.Text = "Dueño";
             // 
             // cbRetirado
             // 
@@ -239,13 +297,14 @@
             this.btnCargaMascota.TabIndex = 17;
             this.btnCargaMascota.Text = "Cargar";
             this.btnCargaMascota.UseVisualStyleBackColor = true;
+            this.btnCargaMascota.Click += new System.EventHandler(this.btnCargaMascota_Click);
             // 
             // txtObsMascota
             // 
             this.txtObsMascota.Location = new System.Drawing.Point(107, 161);
             this.txtObsMascota.Margin = new System.Windows.Forms.Padding(4);
             this.txtObsMascota.Name = "txtObsMascota";
-            this.txtObsMascota.Size = new System.Drawing.Size(132, 26);
+            this.txtObsMascota.Size = new System.Drawing.Size(284, 26);
             this.txtObsMascota.TabIndex = 14;
             // 
             // txtNombreMascota
@@ -296,39 +355,30 @@
             this.lblNombreMascota.TabIndex = 9;
             this.lblNombreMascota.Text = "Nombre";
             // 
-            // dgvGuarderia
+            // dgvDuenios
             // 
-            this.dgvGuarderia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvGuarderia.Location = new System.Drawing.Point(51, 313);
-            this.dgvGuarderia.Name = "dgvGuarderia";
-            this.dgvGuarderia.Size = new System.Drawing.Size(511, 169);
-            this.dgvGuarderia.TabIndex = 1;
+            this.dgvDuenios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDuenios.Location = new System.Drawing.Point(48, 294);
+            this.dgvDuenios.Name = "dgvDuenios";
+            this.dgvDuenios.Size = new System.Drawing.Size(511, 93);
+            this.dgvDuenios.TabIndex = 2;
+            this.dgvDuenios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDuenios_CellClick_1);
             // 
-            // lblDuenioMascota
+            // dgvMascotas
             // 
-            this.lblDuenioMascota.AutoSize = true;
-            this.lblDuenioMascota.Location = new System.Drawing.Point(8, 116);
-            this.lblDuenioMascota.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblDuenioMascota.Name = "lblDuenioMascota";
-            this.lblDuenioMascota.Size = new System.Drawing.Size(49, 18);
-            this.lblDuenioMascota.TabIndex = 22;
-            this.lblDuenioMascota.Text = "Dueño";
-            // 
-            // cbDueniosMascota
-            // 
-            this.cbDueniosMascota.FormattingEnabled = true;
-            this.cbDueniosMascota.Location = new System.Drawing.Point(107, 113);
-            this.cbDueniosMascota.Name = "cbDueniosMascota";
-            this.cbDueniosMascota.Size = new System.Drawing.Size(132, 26);
-            this.cbDueniosMascota.TabIndex = 23;
-            this.cbDueniosMascota.Text = "Dueños";
+            this.dgvMascotas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMascotas.Location = new System.Drawing.Point(48, 393);
+            this.dgvMascotas.Name = "dgvMascotas";
+            this.dgvMascotas.Size = new System.Drawing.Size(511, 92);
+            this.dgvMascotas.TabIndex = 3;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(640, 518);
-            this.Controls.Add(this.dgvGuarderia);
+            this.Controls.Add(this.dgvMascotas);
+            this.Controls.Add(this.dgvDuenios);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -339,7 +389,8 @@
             this.tabDuenio.PerformLayout();
             this.tabMascota.ResumeLayout(false);
             this.tabMascota.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvGuarderia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDuenios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMascotas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -368,9 +419,13 @@
         private System.Windows.Forms.Label lblObsMascota;
         private System.Windows.Forms.Label lblTipoMascota;
         private System.Windows.Forms.Label lblNombreMascota;
-        private System.Windows.Forms.DataGridView dgvGuarderia;
         private System.Windows.Forms.ComboBox cbDueniosMascota;
         private System.Windows.Forms.Label lblDuenioMascota;
+        private System.Windows.Forms.DataGridView dgvDuenios;
+        private System.Windows.Forms.DataGridView dgvMascotas;
+        private System.Windows.Forms.Label lblMensaje;
+        private System.Windows.Forms.Button btnModificarDuenio;
+        private System.Windows.Forms.Button btnModificarMascota;
     }
 }
 
