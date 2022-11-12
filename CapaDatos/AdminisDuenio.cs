@@ -66,6 +66,42 @@ namespace CapaDatos
             }
             return ds;
         }
+        public List<DuenioCB> ObtenerDueniosCB()
+        {
+            List<DuenioCB> listaDuenioCB = new List<DuenioCB>();
+            string orden = "Select id, nombre, apellido From Duenio";
+            SqlCommand cmd = new SqlCommand(orden, conexion);
+            SqlDataReader dr;
+            try
+            {
+                Abrirconexion();
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    string nombre = dr.GetString(1);
+                    string apellido = dr.GetString(2);
+                    string nombreApellido = $"{nombre} {apellido}";
+
+
+                    DuenioCB duenioCB = new DuenioCB();
+                    duenioCB.idProp = dr.GetInt32(0);
+                    duenioCB.nombreApellidoProp = nombreApellido;
+                    //duenioCB.nombreProp = dr.GetString(1);
+                    //duenioCB.apellidoProp = dr.GetString(2);
+                    listaDuenioCB.Add(duenioCB);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al listar dueños", e);
+            }
+            finally
+            {
+                Cerrarconexion();
+                cmd.Dispose();
+            }
+            return listaDuenioCB;
+        }
 
     }
 }

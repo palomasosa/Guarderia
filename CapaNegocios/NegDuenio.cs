@@ -21,5 +21,9 @@ namespace CapaNegocios
         {
             return objDatosDuenio.listadoDuenios(cual);
         }
+        public List<DuenioCB> ObtenerDueniosCB()
+        {
+            return objDatosDuenio.ObtenerDueniosCB();
+        }
     }
 }

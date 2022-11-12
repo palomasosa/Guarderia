@@ -31,7 +31,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabDuenio = new System.Windows.Forms.TabPage();
             this.btnModificarDuenio = new System.Windows.Forms.Button();
-            this.lblMensaje = new System.Windows.Forms.Label();
             this.btnCargarDuenio = new System.Windows.Forms.Button();
             this.txtDniDuenio = new System.Windows.Forms.TextBox();
             this.txtTelDuenio = new System.Windows.Forms.TextBox();
@@ -57,6 +56,8 @@
             this.lblNombreMascota = new System.Windows.Forms.Label();
             this.dgvDuenios = new System.Windows.Forms.DataGridView();
             this.dgvMascotas = new System.Windows.Forms.DataGridView();
+            this.btnCancelarMascota = new System.Windows.Forms.Button();
+            this.btnCancelarDuenio = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabDuenio.SuspendLayout();
             this.tabMascota.SuspendLayout();
@@ -68,17 +69,17 @@
             // 
             this.tabControl1.Controls.Add(this.tabDuenio);
             this.tabControl1.Controls.Add(this.tabMascota);
-            this.tabControl1.Location = new System.Drawing.Point(48, 27);
+            this.tabControl1.Location = new System.Drawing.Point(281, 13);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(518, 264);
+            this.tabControl1.Size = new System.Drawing.Size(539, 264);
             this.tabControl1.TabIndex = 0;
             // 
             // tabDuenio
             // 
+            this.tabDuenio.Controls.Add(this.btnCancelarDuenio);
             this.tabDuenio.Controls.Add(this.btnModificarDuenio);
-            this.tabDuenio.Controls.Add(this.lblMensaje);
             this.tabDuenio.Controls.Add(this.btnCargarDuenio);
             this.tabDuenio.Controls.Add(this.txtDniDuenio);
             this.tabDuenio.Controls.Add(this.txtTelDuenio);
@@ -93,7 +94,7 @@
             this.tabDuenio.Margin = new System.Windows.Forms.Padding(4);
             this.tabDuenio.Name = "tabDuenio";
             this.tabDuenio.Padding = new System.Windows.Forms.Padding(4);
-            this.tabDuenio.Size = new System.Drawing.Size(510, 233);
+            this.tabDuenio.Size = new System.Drawing.Size(531, 233);
             this.tabDuenio.TabIndex = 0;
             this.tabDuenio.Text = "Dueño";
             this.tabDuenio.UseVisualStyleBackColor = true;
@@ -108,14 +109,6 @@
             this.btnModificarDuenio.UseVisualStyleBackColor = true;
             this.btnModificarDuenio.Visible = false;
             this.btnModificarDuenio.Click += new System.EventHandler(this.btnModificarDuenio_Click);
-            // 
-            // lblMensaje
-            // 
-            this.lblMensaje.AutoSize = true;
-            this.lblMensaje.Location = new System.Drawing.Point(339, 101);
-            this.lblMensaje.Name = "lblMensaje";
-            this.lblMensaje.Size = new System.Drawing.Size(0, 18);
-            this.lblMensaje.TabIndex = 9;
             // 
             // btnCargarDuenio
             // 
@@ -134,6 +127,7 @@
             this.txtDniDuenio.Name = "txtDniDuenio";
             this.txtDniDuenio.Size = new System.Drawing.Size(132, 26);
             this.txtDniDuenio.TabIndex = 7;
+            this.txtDniDuenio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDniDuenio_KeyPress);
             // 
             // txtTelDuenio
             // 
@@ -142,6 +136,7 @@
             this.txtTelDuenio.Name = "txtTelDuenio";
             this.txtTelDuenio.Size = new System.Drawing.Size(132, 26);
             this.txtTelDuenio.TabIndex = 6;
+            this.txtTelDuenio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelDuenio_KeyPress);
             // 
             // txtApellidoDuenio
             // 
@@ -150,6 +145,7 @@
             this.txtApellidoDuenio.Name = "txtApellidoDuenio";
             this.txtApellidoDuenio.Size = new System.Drawing.Size(132, 26);
             this.txtApellidoDuenio.TabIndex = 5;
+            this.txtApellidoDuenio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellidoDuenio_KeyPress);
             // 
             // txtNombreDuenio
             // 
@@ -158,6 +154,7 @@
             this.txtNombreDuenio.Name = "txtNombreDuenio";
             this.txtNombreDuenio.Size = new System.Drawing.Size(132, 26);
             this.txtNombreDuenio.TabIndex = 4;
+            this.txtNombreDuenio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreDuenio_KeyPress);
             // 
             // lblDniDuenio
             // 
@@ -201,6 +198,7 @@
             // 
             // tabMascota
             // 
+            this.tabMascota.Controls.Add(this.btnCancelarMascota);
             this.tabMascota.Controls.Add(this.btnModificarMascota);
             this.tabMascota.Controls.Add(this.cbDueniosMascota);
             this.tabMascota.Controls.Add(this.lblDuenioMascota);
@@ -218,7 +216,7 @@
             this.tabMascota.Margin = new System.Windows.Forms.Padding(4);
             this.tabMascota.Name = "tabMascota";
             this.tabMascota.Padding = new System.Windows.Forms.Padding(4);
-            this.tabMascota.Size = new System.Drawing.Size(510, 233);
+            this.tabMascota.Size = new System.Drawing.Size(531, 233);
             this.tabMascota.TabIndex = 1;
             this.tabMascota.Text = "Mascota";
             this.tabMascota.UseVisualStyleBackColor = true;
@@ -257,7 +255,7 @@
             // 
             this.cbRetirado.AutoSize = true;
             this.cbRetirado.Font = new System.Drawing.Font("Corbel", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbRetirado.Location = new System.Drawing.Point(260, 115);
+            this.cbRetirado.Location = new System.Drawing.Point(301, 115);
             this.cbRetirado.Name = "cbRetirado";
             this.cbRetirado.Size = new System.Drawing.Size(79, 22);
             this.cbRetirado.TabIndex = 21;
@@ -267,7 +265,7 @@
             // dtpFechaNac
             // 
             this.dtpFechaNac.Font = new System.Drawing.Font("Corbel", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFechaNac.Location = new System.Drawing.Point(260, 61);
+            this.dtpFechaNac.Location = new System.Drawing.Point(287, 70);
             this.dtpFechaNac.Name = "dtpFechaNac";
             this.dtpFechaNac.Size = new System.Drawing.Size(237, 23);
             this.dtpFechaNac.TabIndex = 20;
@@ -306,6 +304,7 @@
             this.txtObsMascota.Name = "txtObsMascota";
             this.txtObsMascota.Size = new System.Drawing.Size(284, 26);
             this.txtObsMascota.TabIndex = 14;
+            this.txtObsMascota.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtObsMascota_KeyPress);
             // 
             // txtNombreMascota
             // 
@@ -314,11 +313,12 @@
             this.txtNombreMascota.Name = "txtNombreMascota";
             this.txtNombreMascota.Size = new System.Drawing.Size(132, 26);
             this.txtNombreMascota.TabIndex = 13;
+            this.txtNombreMascota.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreMascota_KeyPress);
             // 
             // lblFechaNacMascota
             // 
             this.lblFechaNacMascota.AutoSize = true;
-            this.lblFechaNacMascota.Location = new System.Drawing.Point(257, 29);
+            this.lblFechaNacMascota.Location = new System.Drawing.Point(284, 29);
             this.lblFechaNacMascota.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFechaNacMascota.Name = "lblFechaNacMascota";
             this.lblFechaNacMascota.Size = new System.Drawing.Size(134, 18);
@@ -358,25 +358,48 @@
             // dgvDuenios
             // 
             this.dgvDuenios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDuenios.Location = new System.Drawing.Point(48, 294);
+            this.dgvDuenios.Location = new System.Drawing.Point(281, 300);
             this.dgvDuenios.Name = "dgvDuenios";
-            this.dgvDuenios.Size = new System.Drawing.Size(511, 93);
+            this.dgvDuenios.Size = new System.Drawing.Size(539, 251);
             this.dgvDuenios.TabIndex = 2;
             this.dgvDuenios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDuenios_CellClick_1);
             // 
             // dgvMascotas
             // 
             this.dgvMascotas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMascotas.Location = new System.Drawing.Point(48, 393);
+            this.dgvMascotas.Location = new System.Drawing.Point(186, 569);
             this.dgvMascotas.Name = "dgvMascotas";
-            this.dgvMascotas.Size = new System.Drawing.Size(511, 92);
+            this.dgvMascotas.Size = new System.Drawing.Size(744, 251);
             this.dgvMascotas.TabIndex = 3;
+            this.dgvMascotas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMascotas_CellClick);
+            // 
+            // btnCancelarMascota
+            // 
+            this.btnCancelarMascota.Location = new System.Drawing.Point(334, 200);
+            this.btnCancelarMascota.Name = "btnCancelarMascota";
+            this.btnCancelarMascota.Size = new System.Drawing.Size(79, 26);
+            this.btnCancelarMascota.TabIndex = 26;
+            this.btnCancelarMascota.Text = "Cancelar";
+            this.btnCancelarMascota.UseVisualStyleBackColor = true;
+            this.btnCancelarMascota.Visible = false;
+            this.btnCancelarMascota.Click += new System.EventHandler(this.btnCancelarMascota_Click);
+            // 
+            // btnCancelarDuenio
+            // 
+            this.btnCancelarDuenio.Location = new System.Drawing.Point(334, 200);
+            this.btnCancelarDuenio.Name = "btnCancelarDuenio";
+            this.btnCancelarDuenio.Size = new System.Drawing.Size(79, 26);
+            this.btnCancelarDuenio.TabIndex = 27;
+            this.btnCancelarDuenio.Text = "Cancelar";
+            this.btnCancelarDuenio.UseVisualStyleBackColor = true;
+            this.btnCancelarDuenio.Visible = false;
+            this.btnCancelarDuenio.Click += new System.EventHandler(this.btnCancelarDuenio_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(640, 518);
+            this.ClientSize = new System.Drawing.Size(1154, 832);
             this.Controls.Add(this.dgvMascotas);
             this.Controls.Add(this.dgvDuenios);
             this.Controls.Add(this.tabControl1);
@@ -423,9 +446,10 @@
         private System.Windows.Forms.Label lblDuenioMascota;
         private System.Windows.Forms.DataGridView dgvDuenios;
         private System.Windows.Forms.DataGridView dgvMascotas;
-        private System.Windows.Forms.Label lblMensaje;
         private System.Windows.Forms.Button btnModificarDuenio;
         private System.Windows.Forms.Button btnModificarMascota;
+        private System.Windows.Forms.Button btnCancelarDuenio;
+        private System.Windows.Forms.Button btnCancelarMascota;
     }
 }
 

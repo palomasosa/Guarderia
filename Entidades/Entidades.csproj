@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Duenio.cs" />
+    <Compile Include="DuenioCB.cs" />
     <Compile Include="Mascota.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

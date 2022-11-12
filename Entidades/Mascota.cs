@@ -15,7 +15,7 @@ namespace Entidades
         private string tipo;
         private string observacion;
         private DateTime fechaNacimiento;
-        private bool retirado;
+        private string retirado;
         private int duenioId;
         #endregion
 
@@ -45,7 +45,7 @@ namespace Entidades
             get { return fechaNacimiento; }
             set { fechaNacimiento = value; }
         }
-        public bool retiradoProp
+        public string retiradoProp
         {
             get { return retirado; }
             set { retirado = value; }
@@ -59,7 +59,7 @@ namespace Entidades
 
         #region Constructores
         public Mascota() { }
-        public Mascota(string nom, string tip, string obs, DateTime fecNac, bool ret)
+        public Mascota(string nom, string tip, string obs, DateTime fecNac, string ret)
         {
             nombre = nom;
             tipo = tip;
@@ -70,7 +70,17 @@ namespace Entidades
         #endregion
 
         #region Metodos
-
+        public void RetiradoM(bool retiradoM)
+        {
+            if (retiradoM == true)
+            {
+                retirado = "si";
+            }
+            else
+            {
+                retirado = "no";
+            }
+        }
         #endregion
     }
 }

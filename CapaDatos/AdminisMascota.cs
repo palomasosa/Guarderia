@@ -16,7 +16,7 @@ namespace CapaDatos
             int resultado = -1;
             string orden = string.Empty;
             if (accion == "Alta")
-                orden = $"insert into Mascota values ('{objMascota.nombreProp}','{objMascota.tipoProp}','{objMascota.observacionProp}','{objMascota.fechaNacimientoProp}','{objMascota.retiradoProp}',{objMascota.duenioIdProp}";
+                orden = $"insert into Mascota values ('{objMascota.nombreProp}','{objMascota.tipoProp}','{objMascota.observacionProp}','{objMascota.fechaNacimientoProp}','{objMascota.retiradoProp}',{objMascota.duenioIdProp})";
             if (accion == "Modificar")
                 orden = $"update Mascota set nombre = '{objMascota.nombreProp}' where id = {objMascota.idProp}; update Mascota set tipo = '{objMascota.tipoProp}' where id = {objMascota.idProp}; update Mascota set observacion = '{objMascota.observacionProp}' where id = {objMascota.idProp}; update Mascota set fechaNacimiento = '{objMascota.fechaNacimientoProp}' where id = {objMascota.idProp}; update Mascota set retirado = '{objMascota.retiradoProp}' where id = {objMascota.idProp}; update Mascota set duenioId = {objMascota.duenioIdProp} where id = {objMascota.idProp};";
             // falta la orden de borrar
