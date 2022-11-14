@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
 using CapaNegocios;
+using System.Globalization;
 
 namespace GuarderiaMascotas
 {
@@ -18,14 +19,14 @@ namespace GuarderiaMascotas
         {
             InitializeComponent();
             dgvDuenios.ColumnCount = 5;
-            dgvDuenios.Columns[0].HeaderText = "Id";
+            dgvDuenios.Columns[0].HeaderText = "Código";
             dgvDuenios.Columns[1].HeaderText = "DNI";
             dgvDuenios.Columns[2].HeaderText = "Nombre";
             dgvDuenios.Columns[3].HeaderText = "Apellido";
             dgvDuenios.Columns[4].HeaderText = "Telefono";
 
             dgvMascotas.ColumnCount = 7;
-            dgvMascotas.Columns[0].HeaderText = "Id";
+            dgvMascotas.Columns[0].HeaderText = "Código";
             dgvMascotas.Columns[1].HeaderText = "Nombre";
             dgvMascotas.Columns[2].HeaderText = "Tipo";
             dgvMascotas.Columns[3].HeaderText = "Observacion";
@@ -73,6 +74,8 @@ namespace GuarderiaMascotas
 
         public NegDuenio objNegDuenio = new NegDuenio();
         public NegMascota objNegMascota = new NegMascota();
+        //public int idDuenioEliminar; 
+        //public int idMascotaEliminar;
         #endregion
 
         #region MetodoLlenadoCombo
@@ -98,7 +101,7 @@ namespace GuarderiaMascotas
             objEntMascota.nombreProp = txtNombreMascota.Text;
             objEntMascota.tipoProp = cmbTipo.SelectedItem.ToString();//--
             objEntMascota.observacionProp = txtObsMascota.Text;
-            objEntMascota.fechaNacimientoProp = dtpFechaNac.Value;
+            objEntMascota.fechaNacimientoProp = /*DateTime.Parse(*/dtpFechaNac.Value/*.ToString("yyyy-mm-dd", CultureInfo.CreateSpecificCulture("en-US")))*/;
             objEntMascota.duenioIdProp = int.Parse(cbDueniosMascota.SelectedValue.ToString());
             bool retiradoABD = cbRetirado.Checked;
             objEntMascota.RetiradoM(retiradoABD);
@@ -146,7 +149,7 @@ namespace GuarderiaMascotas
                 MessageBox.Show("Ingrese un DNI", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
-            else if (txtDniDuenio.Text.Length > 8 || txtDniDuenio.Text.Length <= 7)
+            else if (txtDniDuenio.Text.Length > 8 || txtDniDuenio.Text.Length < 7)
             {
                 MessageBox.Show("Solo se permiten DNI entre 7 y 8 caracteres", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
@@ -286,6 +289,7 @@ namespace GuarderiaMascotas
                     btnModificarDuenio.Visible = false;
                     btnCargarDuenio.Visible = true;
                     btnCancelarDuenio.Visible = false;
+                    btnEliminarDuenio.Visible = false;
                 }
                 else
                 {
@@ -310,6 +314,7 @@ namespace GuarderiaMascotas
                     btnModificarMascota.Visible = false;
                     btnCargaMascota.Visible = true;
                     btnCancelarMascota.Visible = false;
+                    btnEliminarMascota.Visible = false;
                 }
                 else
                 {
@@ -333,6 +338,7 @@ namespace GuarderiaMascotas
                 btnCargarDuenio.Visible = false;
                 btnModificarDuenio.Visible = true;
                 btnCancelarDuenio.Visible = true;
+                btnEliminarDuenio.Visible = true;
             }
         }
 
@@ -348,6 +354,7 @@ namespace GuarderiaMascotas
                 btnCargaMascota.Visible = false;
                 btnModificarMascota.Visible = true;
                 btnCancelarMascota.Visible = true;
+                btnEliminarMascota.Visible = true;
             }
         }
         #endregion
@@ -396,7 +403,7 @@ namespace GuarderiaMascotas
 
         private void txtNombreMascota_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
             {
                 MessageBox.Show("Solo se permite letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
@@ -406,7 +413,7 @@ namespace GuarderiaMascotas
 
         private void txtObsMascota_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back) && (e.KeyChar != (char)Keys.Space))
             {
                 MessageBox.Show("Solo se permite letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
@@ -422,6 +429,7 @@ namespace GuarderiaMascotas
             btnCargarDuenio.Visible = true;
             btnModificarDuenio.Visible = false;
             btnCancelarDuenio.Visible = false;
+            btnEliminarDuenio.Visible = false;
         }
 
         private void btnCancelarMascota_Click(object sender, EventArgs e)
@@ -430,7 +438,58 @@ namespace GuarderiaMascotas
             btnCargaMascota.Visible = true;
             btnModificarMascota.Visible = false;
             btnCancelarMascota.Visible = false;
+            btnEliminarMascota.Visible = false;
         }
         #endregion
+
+
+        private void btnEliminarDuenio_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Está seguro que quiere eliminar ese dueño?", "Message", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int nGrabados = -1;
+                nGrabados = objNegDuenio.abmDuenio("Baja", objEntDuenio);
+                if (nGrabados == -1)
+                {
+                     MessageBox.Show("No se logró eliminar el dueño del sistema");
+                }
+                else
+                {
+                     MessageBox.Show("Se logró eliminar al dueño con éxito");
+                     LlenarDGVDuenio();
+                     LimpiarDuenio();
+                     LlenarCombos();
+                     btnModificarDuenio.Visible = false;
+                     btnCargarDuenio.Visible = true;
+                     btnCancelarDuenio.Visible = false;
+                     btnEliminarDuenio.Visible = false;
+                }
+            }
+                
+        }
+
+        private void btnEliminarMascota_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Está seguro que quiere eliminar esta mascota?", "Message", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {    
+                 int nGrabados = -1;
+                nGrabados = objNegMascota.abmMascota("Baja", objEntMascota);
+                if (nGrabados == -1)
+                {
+                    MessageBox.Show("No se logró eliminar la mascota del sistema");
+                }
+                else
+                {
+                    MessageBox.Show("Se logró eliminar a la mascota con éxito");
+                    LlenarDGVMascota();
+                    LimpiarMascota();
+                    btnModificarMascota.Visible = false;
+                    btnCargaMascota.Visible = true;
+                    btnCancelarMascota.Visible = false;
+                    btnEliminarMascota.Visible = false;
+                }   
+            }
+            
+        }
     }
 }

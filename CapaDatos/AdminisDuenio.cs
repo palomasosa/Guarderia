@@ -19,7 +19,8 @@ namespace CapaDatos
                 orden = $"insert into Duenio values ({objDuenio.dniProp},'{objDuenio.nombreProp}','{objDuenio.apellidoProp}',{objDuenio.telefonoProp})";
             if (accion == "Modificar")
                 orden = $"update Duenio set DNI = {objDuenio.dniProp} where id = {objDuenio.idProp}; update Duenio set nombre = '{objDuenio.nombreProp}' where id = {objDuenio.idProp}; update Duenio set apellido = '{objDuenio.apellidoProp}' where id = {objDuenio.idProp}; update Duenio set telefono = {objDuenio.telefonoProp} where id = {objDuenio.idProp}; ";
-            
+            if (accion == "Baja")
+                orden = $"delete from Duenio where id = {objDuenio.idProp}; ";
             SqlCommand cmd = new SqlCommand(orden, conexion);
             try
             {

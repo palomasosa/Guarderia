@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using Entidades;
+using System.Globalization;
 
 namespace CapaDatos
 {
@@ -19,7 +20,8 @@ namespace CapaDatos
                 orden = $"insert into Mascota values ('{objMascota.nombreProp}','{objMascota.tipoProp}','{objMascota.observacionProp}','{objMascota.fechaNacimientoProp}','{objMascota.retiradoProp}',{objMascota.duenioIdProp})";
             if (accion == "Modificar")
                 orden = $"update Mascota set nombre = '{objMascota.nombreProp}' where id = {objMascota.idProp}; update Mascota set tipo = '{objMascota.tipoProp}' where id = {objMascota.idProp}; update Mascota set observacion = '{objMascota.observacionProp}' where id = {objMascota.idProp}; update Mascota set fechaNacimiento = '{objMascota.fechaNacimientoProp}' where id = {objMascota.idProp}; update Mascota set retirado = '{objMascota.retiradoProp}' where id = {objMascota.idProp}; update Mascota set duenioId = {objMascota.duenioIdProp} where id = {objMascota.idProp};";
-            // falta la orden de borrar
+            if (accion == "Baja")
+                orden = $"delete from Mascota where id = {objMascota.idProp}; ";
             SqlCommand cmd = new SqlCommand(orden, conexion);
             try
             {

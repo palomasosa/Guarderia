@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabDuenio = new System.Windows.Forms.TabPage();
+            this.btnCancelarDuenio = new System.Windows.Forms.Button();
             this.btnModificarDuenio = new System.Windows.Forms.Button();
             this.btnCargarDuenio = new System.Windows.Forms.Button();
             this.txtDniDuenio = new System.Windows.Forms.TextBox();
@@ -41,6 +42,7 @@
             this.lblApellidoDuenio = new System.Windows.Forms.Label();
             this.lblNombreDuenio = new System.Windows.Forms.Label();
             this.tabMascota = new System.Windows.Forms.TabPage();
+            this.btnCancelarMascota = new System.Windows.Forms.Button();
             this.btnModificarMascota = new System.Windows.Forms.Button();
             this.cbDueniosMascota = new System.Windows.Forms.ComboBox();
             this.lblDuenioMascota = new System.Windows.Forms.Label();
@@ -56,8 +58,8 @@
             this.lblNombreMascota = new System.Windows.Forms.Label();
             this.dgvDuenios = new System.Windows.Forms.DataGridView();
             this.dgvMascotas = new System.Windows.Forms.DataGridView();
-            this.btnCancelarMascota = new System.Windows.Forms.Button();
-            this.btnCancelarDuenio = new System.Windows.Forms.Button();
+            this.btnEliminarDuenio = new System.Windows.Forms.Button();
+            this.btnEliminarMascota = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabDuenio.SuspendLayout();
             this.tabMascota.SuspendLayout();
@@ -78,6 +80,7 @@
             // 
             // tabDuenio
             // 
+            this.tabDuenio.Controls.Add(this.btnEliminarDuenio);
             this.tabDuenio.Controls.Add(this.btnCancelarDuenio);
             this.tabDuenio.Controls.Add(this.btnModificarDuenio);
             this.tabDuenio.Controls.Add(this.btnCargarDuenio);
@@ -98,6 +101,17 @@
             this.tabDuenio.TabIndex = 0;
             this.tabDuenio.Text = "Dueño";
             this.tabDuenio.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelarDuenio
+            // 
+            this.btnCancelarDuenio.Location = new System.Drawing.Point(334, 200);
+            this.btnCancelarDuenio.Name = "btnCancelarDuenio";
+            this.btnCancelarDuenio.Size = new System.Drawing.Size(79, 26);
+            this.btnCancelarDuenio.TabIndex = 27;
+            this.btnCancelarDuenio.Text = "Cancelar";
+            this.btnCancelarDuenio.UseVisualStyleBackColor = true;
+            this.btnCancelarDuenio.Visible = false;
+            this.btnCancelarDuenio.Click += new System.EventHandler(this.btnCancelarDuenio_Click);
             // 
             // btnModificarDuenio
             // 
@@ -198,6 +212,7 @@
             // 
             // tabMascota
             // 
+            this.tabMascota.Controls.Add(this.btnEliminarMascota);
             this.tabMascota.Controls.Add(this.btnCancelarMascota);
             this.tabMascota.Controls.Add(this.btnModificarMascota);
             this.tabMascota.Controls.Add(this.cbDueniosMascota);
@@ -220,6 +235,17 @@
             this.tabMascota.TabIndex = 1;
             this.tabMascota.Text = "Mascota";
             this.tabMascota.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelarMascota
+            // 
+            this.btnCancelarMascota.Location = new System.Drawing.Point(334, 200);
+            this.btnCancelarMascota.Name = "btnCancelarMascota";
+            this.btnCancelarMascota.Size = new System.Drawing.Size(79, 26);
+            this.btnCancelarMascota.TabIndex = 26;
+            this.btnCancelarMascota.Text = "Cancelar";
+            this.btnCancelarMascota.UseVisualStyleBackColor = true;
+            this.btnCancelarMascota.Visible = false;
+            this.btnCancelarMascota.Click += new System.EventHandler(this.btnCancelarMascota_Click);
             // 
             // btnModificarMascota
             // 
@@ -357,49 +383,59 @@
             // 
             // dgvDuenios
             // 
+            this.dgvDuenios.AllowUserToAddRows = false;
+            this.dgvDuenios.AllowUserToDeleteRows = false;
             this.dgvDuenios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDuenios.Location = new System.Drawing.Point(281, 300);
+            this.dgvDuenios.Location = new System.Drawing.Point(281, 284);
             this.dgvDuenios.Name = "dgvDuenios";
-            this.dgvDuenios.Size = new System.Drawing.Size(539, 251);
+            this.dgvDuenios.ReadOnly = true;
+            this.dgvDuenios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDuenios.Size = new System.Drawing.Size(535, 166);
             this.dgvDuenios.TabIndex = 2;
             this.dgvDuenios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDuenios_CellClick_1);
             // 
             // dgvMascotas
             // 
+            this.dgvMascotas.AllowUserToAddRows = false;
+            this.dgvMascotas.AllowUserToDeleteRows = false;
             this.dgvMascotas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMascotas.Location = new System.Drawing.Point(186, 569);
+            this.dgvMascotas.Location = new System.Drawing.Point(188, 456);
             this.dgvMascotas.Name = "dgvMascotas";
-            this.dgvMascotas.Size = new System.Drawing.Size(744, 251);
+            this.dgvMascotas.ReadOnly = true;
+            this.dgvMascotas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMascotas.Size = new System.Drawing.Size(741, 182);
             this.dgvMascotas.TabIndex = 3;
             this.dgvMascotas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMascotas_CellClick);
             // 
-            // btnCancelarMascota
+            // btnEliminarDuenio
             // 
-            this.btnCancelarMascota.Location = new System.Drawing.Point(334, 200);
-            this.btnCancelarMascota.Name = "btnCancelarMascota";
-            this.btnCancelarMascota.Size = new System.Drawing.Size(79, 26);
-            this.btnCancelarMascota.TabIndex = 26;
-            this.btnCancelarMascota.Text = "Cancelar";
-            this.btnCancelarMascota.UseVisualStyleBackColor = true;
-            this.btnCancelarMascota.Visible = false;
-            this.btnCancelarMascota.Click += new System.EventHandler(this.btnCancelarMascota_Click);
+            this.btnEliminarDuenio.BackColor = System.Drawing.Color.Transparent;
+            this.btnEliminarDuenio.Location = new System.Drawing.Point(249, 200);
+            this.btnEliminarDuenio.Name = "btnEliminarDuenio";
+            this.btnEliminarDuenio.Size = new System.Drawing.Size(79, 26);
+            this.btnEliminarDuenio.TabIndex = 28;
+            this.btnEliminarDuenio.Text = "Eliminar";
+            this.btnEliminarDuenio.UseVisualStyleBackColor = false;
+            this.btnEliminarDuenio.Visible = false;
+            this.btnEliminarDuenio.Click += new System.EventHandler(this.btnEliminarDuenio_Click);
             // 
-            // btnCancelarDuenio
+            // btnEliminarMascota
             // 
-            this.btnCancelarDuenio.Location = new System.Drawing.Point(334, 200);
-            this.btnCancelarDuenio.Name = "btnCancelarDuenio";
-            this.btnCancelarDuenio.Size = new System.Drawing.Size(79, 26);
-            this.btnCancelarDuenio.TabIndex = 27;
-            this.btnCancelarDuenio.Text = "Cancelar";
-            this.btnCancelarDuenio.UseVisualStyleBackColor = true;
-            this.btnCancelarDuenio.Visible = false;
-            this.btnCancelarDuenio.Click += new System.EventHandler(this.btnCancelarDuenio_Click);
+            this.btnEliminarMascota.BackColor = System.Drawing.Color.Transparent;
+            this.btnEliminarMascota.Location = new System.Drawing.Point(249, 200);
+            this.btnEliminarMascota.Name = "btnEliminarMascota";
+            this.btnEliminarMascota.Size = new System.Drawing.Size(79, 26);
+            this.btnEliminarMascota.TabIndex = 29;
+            this.btnEliminarMascota.Text = "Eliminar";
+            this.btnEliminarMascota.UseVisualStyleBackColor = false;
+            this.btnEliminarMascota.Visible = false;
+            this.btnEliminarMascota.Click += new System.EventHandler(this.btnEliminarMascota_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1154, 832);
+            this.ClientSize = new System.Drawing.Size(1154, 661);
             this.Controls.Add(this.dgvMascotas);
             this.Controls.Add(this.dgvDuenios);
             this.Controls.Add(this.tabControl1);
@@ -450,6 +486,8 @@
         private System.Windows.Forms.Button btnModificarMascota;
         private System.Windows.Forms.Button btnCancelarDuenio;
         private System.Windows.Forms.Button btnCancelarMascota;
+        private System.Windows.Forms.Button btnEliminarDuenio;
+        private System.Windows.Forms.Button btnEliminarMascota;
     }
 }
 
