@@ -67,6 +67,32 @@ namespace CapaDatos
             }
             return ds;
         }
+
+        public DataSet listadoDueniosBusqueda(string cual)
+        {
+            string orden = $"select * from Duenio where id like '%{cual}%' or DNI like '%{cual}%' or nombre like '%{cual}%' or apellido like '%{cual}%' or telefono like '%{cual}%';";
+
+            SqlCommand cmd = new SqlCommand(orden, conexion);
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+            try
+            {
+                Abrirconexion();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al buscar el duenio", e);
+            }
+            finally
+            {
+                Cerrarconexion();
+                cmd.Dispose();
+            }
+            return ds;
+        }
         public List<DuenioCB> ObtenerDueniosCB()
         {
             List<DuenioCB> listaDuenioCB = new List<DuenioCB>();

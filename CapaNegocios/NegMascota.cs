@@ -20,5 +20,9 @@ namespace CapaNegocios
         {
             return objDatosMascota.listadoMascotas(cual);
         }
+        public DataSet listadoMascotaBusqueda(string cual)
+        {
+            return objDatosMascota.listadoMascotasBusqueda(cual);
+        }
     }
 }

@@ -68,6 +68,31 @@ namespace CapaDatos
             }
             return ds;
         }
+        public DataSet listadoMascotasBusqueda(string cual)
+        {
+            string orden = $"select * from Mascota where id like '%{cual}%' or nombre like '%{cual}%' or tipo like '%{cual}%' or observacion like '%{cual}%' or fechaNacimiento like '%{cual}%';";
+
+            SqlCommand cmd = new SqlCommand(orden, conexion);
+            DataSet ds = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter();
+            try
+            {
+                Abrirconexion();
+                cmd.ExecuteNonQuery();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al buscar la mascota", e);
+            }
+            finally
+            {
+                Cerrarconexion();
+                cmd.Dispose();
+            }
+            return ds;
+        }
 
     }
 }

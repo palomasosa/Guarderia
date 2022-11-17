@@ -68,14 +68,45 @@ namespace GuarderiaMascotas
         }
         #endregion
 
+        #region LlenadoDGVBusqueda
+        private void LlenarDGVDuenioBuscado()
+        {
+            string cual = txtBuscarDuenio.Text;
+            dgvDuenios.Rows.Clear();
+            DataSet ds = new DataSet();
+            ds = objNegDuenio.listadoDueniosBusqueda(cual);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    dgvDuenios.Rows.Add(dr[0].ToString(), dr[1].ToString(), dr[2], dr[3], dr[4].ToString());
+                }
+            }
+        }
+
+        private void LlenarDGVMascotaBuscada()
+        {
+            string cual = txtBuscarMascota.Text;
+            dgvMascotas.Rows.Clear();
+            DataSet ds = new DataSet();
+            ds = objNegMascota.listadoMascotaBusqueda(cual);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in ds.Tables[0].Rows)
+                {
+                    dgvMascotas.Rows.Add(dr[0].ToString(), dr[1], dr[2], dr[3], dr[4].ToString(), dr[5], dr[6].ToString());
+                }
+            }
+        }
+
+        #endregion
+
         #region DeclaracionVariables
         public Duenio objEntDuenio = new Duenio();
         public Mascota objEntMascota = new Mascota();
 
         public NegDuenio objNegDuenio = new NegDuenio();
         public NegMascota objNegMascota = new NegMascota();
-        //public int idDuenioEliminar; 
-        //public int idMascotaEliminar;
         #endregion
 
         #region MetodoLlenadoCombo
@@ -99,9 +130,9 @@ namespace GuarderiaMascotas
         private void TxtBox_a_ObjMascota()
         {
             objEntMascota.nombreProp = txtNombreMascota.Text;
-            objEntMascota.tipoProp = cmbTipo.SelectedItem.ToString();//--
+            objEntMascota.tipoProp = cmbTipo.SelectedItem.ToString();
             objEntMascota.observacionProp = txtObsMascota.Text;
-            objEntMascota.fechaNacimientoProp = /*DateTime.Parse(*/dtpFechaNac.Value/*.ToString("yyyy-mm-dd", CultureInfo.CreateSpecificCulture("en-US")))*/;
+            objEntMascota.fechaNacimientoProp = dtpFechaNac.Value;
             objEntMascota.duenioIdProp = int.Parse(cbDueniosMascota.SelectedValue.ToString());
             bool retiradoABD = cbRetirado.Checked;
             objEntMascota.RetiradoM(retiradoABD);
@@ -288,7 +319,6 @@ namespace GuarderiaMascotas
                     LlenarDGVDuenio();
                     btnModificarDuenio.Visible = false;
                     btnCargarDuenio.Visible = true;
-                    btnCancelarDuenio.Visible = false;
                     btnEliminarDuenio.Visible = false;
                 }
                 else
@@ -313,7 +343,6 @@ namespace GuarderiaMascotas
                     LlenarDGVMascota();
                     btnModificarMascota.Visible = false;
                     btnCargaMascota.Visible = true;
-                    btnCancelarMascota.Visible = false;
                     btnEliminarMascota.Visible = false;
                 }
                 else
@@ -337,7 +366,6 @@ namespace GuarderiaMascotas
                 Ds_a_TxtBoxDuenio(ds);
                 btnCargarDuenio.Visible = false;
                 btnModificarDuenio.Visible = true;
-                btnCancelarDuenio.Visible = true;
                 btnEliminarDuenio.Visible = true;
             }
         }
@@ -353,7 +381,6 @@ namespace GuarderiaMascotas
                 Ds_a_TxtBoxMascota(ds);
                 btnCargaMascota.Visible = false;
                 btnModificarMascota.Visible = true;
-                btnCancelarMascota.Visible = true;
                 btnEliminarMascota.Visible = true;
             }
         }
@@ -422,27 +449,7 @@ namespace GuarderiaMascotas
         }
         #endregion
 
-        #region MetodosBtnCancelar
-        private void btnCancelarDuenio_Click(object sender, EventArgs e)
-        {
-            LimpiarDuenio();
-            btnCargarDuenio.Visible = true;
-            btnModificarDuenio.Visible = false;
-            btnCancelarDuenio.Visible = false;
-            btnEliminarDuenio.Visible = false;
-        }
-
-        private void btnCancelarMascota_Click(object sender, EventArgs e)
-        {
-            LimpiarMascota();
-            btnCargaMascota.Visible = true;
-            btnModificarMascota.Visible = false;
-            btnCancelarMascota.Visible = false;
-            btnEliminarMascota.Visible = false;
-        }
-        #endregion
-
-
+        #region MetodosEliminar
         private void btnEliminarDuenio_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("¿Está seguro que quiere eliminar ese dueño?", "Message", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -461,7 +468,6 @@ namespace GuarderiaMascotas
                      LlenarCombos();
                      btnModificarDuenio.Visible = false;
                      btnCargarDuenio.Visible = true;
-                     btnCancelarDuenio.Visible = false;
                      btnEliminarDuenio.Visible = false;
                 }
             }
@@ -485,11 +491,39 @@ namespace GuarderiaMascotas
                     LimpiarMascota();
                     btnModificarMascota.Visible = false;
                     btnCargaMascota.Visible = true;
-                    btnCancelarMascota.Visible = false;
                     btnEliminarMascota.Visible = false;
                 }   
             }
             
         }
+        #endregion
+
+        #region MetodosBuscadoClick
+        private void btnBuscarDuenio_Click(object sender, EventArgs e)
+        {
+            LlenarDGVDuenioBuscado();
+        }
+
+        private void btnBuscarMascota_Click(object sender, EventArgs e)
+        {
+            LlenarDGVMascotaBuscada();
+        }
+
+        private void Form1_Click(object sender, EventArgs e)
+        {
+            LlenarDGVDuenio();
+            LlenarDGVMascota();
+            txtBuscarDuenio.Text = "";
+            txtBuscarMascota.Text = "";
+            LimpiarDuenio();
+            LimpiarMascota();
+            btnEliminarDuenio.Visible = false;
+            btnModificarDuenio.Visible = false;
+            btnEliminarMascota.Visible = false;
+            btnModificarMascota.Visible = false;
+            btnCargarDuenio.Visible = true;
+            btnCargaMascota.Visible = true;
+        }
+        #endregion
     }
 }

@@ -21,6 +21,10 @@ namespace CapaNegocios
         {
             return objDatosDuenio.listadoDuenios(cual);
         }
+        public DataSet listadoDueniosBusqueda(string cual)
+        {
+            return objDatosDuenio.listadoDueniosBusqueda(cual);
+        }
         public List<DuenioCB> ObtenerDueniosCB()
         {
             return objDatosDuenio.ObtenerDueniosCB();
